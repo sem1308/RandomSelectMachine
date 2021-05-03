@@ -32,10 +32,9 @@ const GiftTextBox = styled.div`
 `;
 
 const GiftButton = styled.div`
-    outline: none;
-    border: none;
-    font-size: 30px;
-    margin: 0px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 10px;
     cursor: pointer;
     &:hover{

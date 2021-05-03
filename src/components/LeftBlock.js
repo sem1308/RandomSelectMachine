@@ -12,7 +12,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme)=>({
   fab: {
-    width: "35px",
+    width: "36px",
     height: "10px",
     background: lightBlue[300],
     color: "white",
@@ -22,11 +22,16 @@ const useStyles = makeStyles((theme)=>({
   }
 }));
 
+const AddButtonBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`
+
 const AddButtonBlock = styled.div`
   display: flex;
-  width: 100%;
-  height:50px;
-  padding: 15px 0px;
+  border-radius:50%;
+  padding: 15px;
   align-items: center;
   justify-content: center;
 
@@ -149,11 +154,13 @@ function LeftBlock() {
           );
       })}       
       </LeftBox>
-      <AddButtonBlock clicked={clicked}>
-        <Fab className={classes.fab} onClick={onClick}>
-          <AddIcon />
-        </Fab>
-      </AddButtonBlock>
+      <AddButtonBox>
+        <AddButtonBlock clicked={clicked} onClick={onClick}>
+          <Fab className={classes.fab} onClick={onClick}>
+            <AddIcon />
+          </Fab>
+        </AddButtonBlock>
+      </AddButtonBox>
       {clicked ? 
         <form clicked={clicked} onSubmit={onSubmit}>
         <TextField
