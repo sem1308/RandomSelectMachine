@@ -57,7 +57,7 @@ function sleep(ms) {
 }
 
 function GiftButtonBlock ({newRestNum}) {
-    const people = GetState();
+    const {people} = GetState();
     const restNum = GetRestNum();
     const dispatch = GetDispatch();
     const classes = useStyles();

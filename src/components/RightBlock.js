@@ -44,9 +44,8 @@ const SelectedPeopleBlock = styled.div`
 `;
 
 function RightBlock () {
-  const people = GetState();
-  const selectedPeople = people.filter(person=>person.selected);
-
+  const {selectedPeople} = GetState();
+  
   return(
     <RightBox>
       <h1 style={{textAlign:'center',fontSize:"50px"}}>~Congratulation~</h1>

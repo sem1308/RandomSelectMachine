@@ -83,7 +83,7 @@ const RemoveButton = styled.div`
 `;
 
 function LeftBlock() {
-  const people = GetState();
+  const {people} = GetState();
   const dispatch = GetDispatch();
   const nextNum = GetNextNum();
   const [name,setName] = useState('');
