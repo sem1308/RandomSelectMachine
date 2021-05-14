@@ -71,8 +71,7 @@ function GiftButtonBlock ({newRestNum}) {
     const onClick = () => {
         if(restNum.current === people.length){return;}
         dispatch({
-            type:'GET_CAKE',
-            restNum
+            type:'GET_CAKE'
         });
     }
 

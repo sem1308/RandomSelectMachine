@@ -1,15 +1,9 @@
-import styled ,{keyframes}from 'styled-components';
+import styled from 'styled-components';
 import GiftButtonBlock from './GiftButtonBlock';
 import {GetState} from '../../GetCakeContext';
 import React from 'react';
-
-const fadeIn = keyframes`
-  from {
-    opacity:0
-  }to{
-    opacity:1
-  }
-`;
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import './styles.css';
 
 const RightBox = styled.div`
   width:90%;
@@ -31,17 +25,13 @@ const SelectedPeopleBlock = styled.div`
   height: 20%;
   font-size: 20px;
   border-radius: 25%;
+  padding: 30px 0px;
   background-color: rgb(0, 128, 128,0.15);
   box-shadow: 0.3rem 0.3rem 0.5rem 0 gray;
   margin: 1%;
 
   align-items: center;
   justify-content: center;
-
-  animation-duration:0.5s;
-  animation-timing-function: ease-out;
-  animation-name: ${fadeIn};
-  animation-fill-mode: forwards;
 `;
 
 function RightBlock () {
@@ -51,9 +41,13 @@ function RightBlock () {
     <RightBox>
       <h1 style={{textAlign:'center',fontSize:"50px",color:"rgb(0, 128, 128)"}}>~Congratulation~</h1>
       <Table>
-        {selectedPeople.map((person)=>{
-          return <SelectedPeopleBlock>{person.name}</SelectedPeopleBlock>
-        })}
+        <TransitionGroup component="div">
+          {selectedPeople.map((person)=>(
+            <CSSTransition key={person.id} timeout={500} classNames="person">
+              <SelectedPeopleBlock>{person.name}</SelectedPeopleBlock>
+            </CSSTransition>            
+          ))}
+        </TransitionGroup>
       </Table>
       <GiftButtonBlock newRestNum={selectedPeople.length}/>
     </RightBox>

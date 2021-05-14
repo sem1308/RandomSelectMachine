@@ -1,5 +1,5 @@
 import React,{useState} from 'react';
-import styled, {keyframes,css} from 'styled-components';
+import styled, {css} from 'styled-components';
 import Person from './Person';
 import {GetState, GetDispatch, GetNextNum} from '../../GetCakeContext';
 import { makeStyles } from '@material-ui/core/styles';
@@ -7,8 +7,6 @@ import TextField from '@material-ui/core/TextField';
 import Fab from '@material-ui/core/Fab';
 import AddIcon from '@material-ui/icons/Add';
 import {lightBlue} from '@material-ui/core/colors';
-import IconButton from '@material-ui/core/IconButton';
-import DeleteIcon from '@material-ui/icons/Delete';
 
 const useStyles = makeStyles((theme)=>({
   fab: {
@@ -44,46 +42,10 @@ const AddButtonBlock = styled.div`
   }
 `
 
-const fadeIn = keyframes`
-  from{
-    opacity: 0.5
-  }to{
-    opacity: 1
-  }
-`
-
 const LeftBox = styled.div`
   margin: 0;
   padding: 0;
   box-shadow: 0 0 0.5rem 0 black;
-`;
-
-const PersonBox = styled.div`
-    display:flex;
-    justify-content: space-around;
-`;
-
-const RemoveButton = styled.div`
-    display: flex;
-    width:20%;
-    align-items: center;
-    justify-content: center;
-    padding: 5px;
-    outline: none;
-    border-right: 1px solid gray;
-    background-color: ${lightBlue[50]};
-    
-    ${props=>
-      props.selected &&
-        css`
-          border-right: 1px solid gray;
-          background-color: gray;
-          animation-duration:0.5s;
-          animation-timing-function: ease-out;
-          animation-name: ${fadeIn};
-          animation-fill-mode: forwards;
-        `
-    }
 `;
 
 function LeftBlock() {
@@ -112,6 +74,7 @@ function LeftBlock() {
       id: nextNum.current,
       selected: false
     }
+    console.log(newPerson);
     dispatch({
       type: 'CREATE',
       newPerson
@@ -141,15 +104,8 @@ function LeftBlock() {
         <p style={{textAlign:"center",margin:0,padding: "10px 0px", background:lightBlue[100],borderRight: "1px solid gray"}}>생일자</p>
         {
           people.map((person)=>{
-          return (
-            <PersonBox>
-              <Person onToggle={onToggle} id={person.id} selected={person.selected}>{person.name}</Person>
-              <RemoveButton selected={person.selected} onClick={()=>onRemove(person.id)}>
-                <IconButton>
-                  <DeleteIcon fontSize="small" />
-                </IconButton>
-              </RemoveButton>
-            </PersonBox>
+            return (
+              <Person onToggle={onToggle} id={person.id} selected={person.selected} onRemove={onRemove}>{person.name}</Person>
             );
         })}       
       </LeftBox>
