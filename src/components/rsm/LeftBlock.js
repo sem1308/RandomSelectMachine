@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
 import styled, {keyframes,css} from 'styled-components';
 import Person from './Person';
-import {GetState, GetDispatch, GetNextNum} from '../GetCakeContext';
+import {GetState, GetDispatch, GetNextNum} from '../../GetCakeContext';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Fab from '@material-ui/core/Fab';
@@ -84,7 +84,6 @@ const RemoveButton = styled.div`
           animation-fill-mode: forwards;
         `
     }
-
 `;
 
 function LeftBlock() {
@@ -139,20 +138,20 @@ function LeftBlock() {
   return (
     <div style={{width:"10%"}}>
       <LeftBox>
-      <p style={{textAlign:"center",margin:0,padding: "10px 0px", background:lightBlue[100],borderRight: "1px solid gray"}}>생일자</p>
-      {
-        people.map((person)=>{
-        return (
-          <PersonBox>
-            <Person onToggle={onToggle} id={person.id} selected={person.selected}>{person.name}</Person>
-            <RemoveButton selected={person.selected} onClick={()=>onRemove(person.id)}>
-              <IconButton>
-                <DeleteIcon fontSize="small" />
-              </IconButton>
-            </RemoveButton>
-          </PersonBox>
-          );
-      })}       
+        <p style={{textAlign:"center",margin:0,padding: "10px 0px", background:lightBlue[100],borderRight: "1px solid gray"}}>생일자</p>
+        {
+          people.map((person)=>{
+          return (
+            <PersonBox>
+              <Person onToggle={onToggle} id={person.id} selected={person.selected}>{person.name}</Person>
+              <RemoveButton selected={person.selected} onClick={()=>onRemove(person.id)}>
+                <IconButton>
+                  <DeleteIcon fontSize="small" />
+                </IconButton>
+              </RemoveButton>
+            </PersonBox>
+            );
+        })}       
       </LeftBox>
       <AddButtonBox>
         <AddButtonBlock clicked={clicked} onClick={onClick}>
@@ -163,12 +162,13 @@ function LeftBlock() {
       </AddButtonBox>
       {clicked ? 
         <form clicked={clicked} onSubmit={onSubmit}>
-        <TextField
-          variant="outlined"
-          placeholder="생일축하해~"
-          label="이름입력" 
-          value={name} 
-          onChange={onChange}/>
+          <TextField
+            variant="outlined"
+            placeholder="생일축하해~"
+            label="이름입력" 
+            value={name} 
+            onChange={onChange}
+          />
         </form> : ""
       }
        
@@ -177,4 +177,4 @@ function LeftBlock() {
   );
 }
 
-export default LeftBlock;
+export default React.memo(LeftBlock);

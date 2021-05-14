@@ -1,6 +1,6 @@
 import React ,{useState} from 'react';
 import styled,{css} from 'styled-components';
-import {GetRestNum,GetDispatch,GetState} from '../GetCakeContext';
+import {GetRestNum,GetDispatch,GetState} from '../../GetCakeContext';
 import FlipCameraAndroidIcon from '@material-ui/icons/FlipCameraAndroid';
 import {lightBlue} from '@material-ui/core/colors';
 import { makeStyles } from '@material-ui/core';
@@ -12,6 +12,9 @@ const useStyles = makeStyles(()=>({
         color: lightBlue[300],
         '&:hover':{
             color: lightBlue[500]
+        },
+        '&:active':{
+            color: lightBlue[700]
         }
     }
 }));
@@ -23,6 +26,7 @@ const GiftButtonBox = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
 const GiftTextBox = styled.div`
   margin: 0 auto;
   padding: 0 auto;
@@ -40,7 +44,6 @@ const GiftButton = styled.div`
     &:hover{
         color: black;
     }
-    transition: ${props=>`${props.number*0.4}s all ease-in`};
 
     ${props=>
         props.clicked &&
@@ -60,6 +63,7 @@ function GiftButtonBlock ({newRestNum}) {
     const restNum = GetRestNum();
     const dispatch = GetDispatch();
     const classes = useStyles();
+
     const [clicked,setClicked] = useState(false);
     const [number,setNumber] = useState();
     restNum.current = newRestNum;
@@ -76,7 +80,7 @@ function GiftButtonBlock ({newRestNum}) {
         setClicked(true);
         for(let i=0; i<number; i++){
             if(restNum.current === people.length){break;}
-            await sleep(500);
+            await sleep(600);
             onClick();
         }
         setClicked(false);
@@ -96,7 +100,8 @@ function GiftButtonBlock ({newRestNum}) {
             <GiftTextBox>
                 <TextField
                     variant="outlined"
-                    label="몇명 뽑을까?" 
+                    label="몇명 뽑을까?"
+                    placeholder="숫자입력" 
                     value={number} 
                     onChange={onChange}
                 />
@@ -105,4 +110,4 @@ function GiftButtonBlock ({newRestNum}) {
     );
 }
 
-export default GiftButtonBlock;
+export default React.memo(GiftButtonBlock);
