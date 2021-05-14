@@ -132,7 +132,7 @@ const PeopleRestNumContext = createContext();
 export function GetCakeProvider({children}) {
     const [state,dispatch] = useReducer(cakeReducer,initialState);
     const restNum = useRef(0);
-    const nextNum = useRef(10);
+    const nextNum = useRef(initialState.length);
 
     return (
         <PeopleStateContext.Provider value={state}>

@@ -1,5 +1,6 @@
 import styled,{css,keyframes} from 'styled-components';
 import { lightBlue } from '@material-ui/core/colors';
+import React from 'react';
 
 const fadeIn = keyframes`
   from {
@@ -46,4 +47,4 @@ function Person({children,selected,id,onToggle}) {
     return <PersonBlock onClick={()=>{onToggle(id)}} selected={selected}>{children}</PersonBlock>;
 }
 
-export default Person;
+export default React.memo(Person);

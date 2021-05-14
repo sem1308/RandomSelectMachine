@@ -1,24 +1,15 @@
-import styled from 'styled-components';
 import React from 'react';
-import LeftBlock from './components/LeftBlock';
-import RightBlock from './components/RightBlock';
-import {GetCakeProvider} from './GetCakeContext';
-
-const AppBlock = styled.div`
-  padding: 0 auto;
-  margin: 0 auto;
-  display:flex;
-`;
+import RandomSelecting from './pages/RandomSelecting';
+import {Route} from 'react-router-dom';
+import Home from './pages/Home';
 
 function App() {
 
   return (
-    <GetCakeProvider>
-      <AppBlock>
-        <LeftBlock/>
-        <RightBlock/>
-      </AppBlock>
-    </GetCakeProvider>
+    <div>
+      <Route path="/" component={Home} exact={true} />
+      <Route path="/rsm" component={RandomSelecting} />
+    </div>
   );
 }
 
